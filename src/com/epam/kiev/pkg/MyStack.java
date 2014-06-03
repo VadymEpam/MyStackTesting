@@ -2,14 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package testpkg;
+package com.epam.kiev.pkg;
 
 import java.util.EmptyStackException;
 
 /**
  *
  * @author Andrii_Rodionov
- * @modified by Vadym_Kuzin
  */
 public class MyStack {
     private Integer[] arr;    
@@ -21,25 +20,18 @@ public class MyStack {
     }
     
     public MyStack(int stack_size){
-    	if (stack_size>0) {
-    		MAX_STACK_SIZE = stack_size;
-    		arr = new Integer[MAX_STACK_SIZE];
-    		size=0;
-    	}
-    	else {
-    		MAX_STACK_SIZE = 10;
-    		arr = new Integer[MAX_STACK_SIZE];
-    		size=0;    		
-    	}
+        MAX_STACK_SIZE = stack_size;
+        arr = new Integer[MAX_STACK_SIZE];
+        
     }
     
-    public void push(Integer item){
+    public Integer push(Integer item){
         if(size == MAX_STACK_SIZE){
             throw new IndexOutOfBoundsException();
         }
-        else{
-        arr[size] = item;
-        size++;}       
+        
+        arr[size++] = item;
+        return item;
     }  
     
     public Integer peek(){
@@ -47,21 +39,17 @@ public class MyStack {
             throw new EmptyStackException();
         }
             
-        return arr[size-1];
+        return arr[size];
     }
     
     public Integer pop(){
         if(empty()){
             throw new EmptyStackException();
         }
-        else{
-        return arr[--size];
-        }
-        
+        return arr[size--];
     }
     
     public boolean empty(){
-    	if (size==0){return true;}
-    	else {return false;}
+        return (size == 0);
     }
 }
